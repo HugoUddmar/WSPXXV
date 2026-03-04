@@ -1,0 +1,16 @@
+h1 Add a new plane
+
+form action="/planes" method="post"
+    input name="n" placeholder="Add a name" type="text"
+    input name="d" placeholder="Add a description" type="text"
+    input name="p" placeholder="Add a price" type="text"
+    input name="ts" placeholder="Add a top speed" type="text"
+    select name="ty"
+        option value="4" Small plane
+        option value="3" Private jet
+        option value="2" Airliner
+        option value="1" Military plane
+    select name="et"
+        option value="1" Afterburner
+        option value="2" Propeller
+    input type="submit" value="Add!"

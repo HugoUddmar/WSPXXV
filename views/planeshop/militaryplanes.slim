@@ -5,5 +5,11 @@ hr
     p Description: #{plane["description"]}
     p Price: #{plane["price"]}
     p Top speed: #{plane["topspeed"]}
+    p Status: #{plane["status"]}
+    p Engine type: #{plane["enginename"]}
+    form action="/planes/#{plane["id"]}/edit" method="get"
+        input type="submit" value="edit"
 
+    form action="/planes/#{plane["id"]}/delete" method="post"
+        input type="submit" value="delete"
     hr

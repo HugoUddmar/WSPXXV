@@ -1,0 +1,16 @@
+h2 Update
+
+form action="/planes/#{@selected_plane["id"]}/update" method="post"
+    input name="n" placeholder="#{@selected_plane["name"]}" type="text"
+    input name="d" placeholder="#{@selected_plane["description"]}" type="text"
+    input name="p" placeholder="#{@selected_plane["price"]}" type="text"
+    input name="ts" placeholder="#{@selected_plane["topspeed"]}" type="text"
+    select name="ty"
+        option value="4" Small plane
+        option value="3" Private jet
+        option value="2" Airliner
+        option value="1" Military plane
+    select name="et"
+        option value="1" Afterburner
+        option value="2" Propeller
+    input type="submit" value="Uppdatera!"
