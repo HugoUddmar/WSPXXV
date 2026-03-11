@@ -1,0 +1,17 @@
+h2 Here is your bought planes:
+
+hr
+
+form action="/index" method="get"
+            input type="submit" value="Go back"
+
+hr
+
+- @airplanes.each do |plane|
+    p Name: #{plane["name"]}
+    p Description: #{plane["description"]}
+    p Price: #{plane["price"]}
+    p Top speed: #{plane["topspeed"]}
+    p Status: #{plane["status"]}
+    hr
+

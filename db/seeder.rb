@@ -62,10 +62,6 @@ def populate_tables(db)
   db.execute('INSERT INTO types (name) VALUES ("small plane")') 
   db.execute('INSERT INTO enginetypes (enginename) VALUES ("jetafterburner")') 
   db.execute('INSERT INTO enginetypes (enginename) VALUES ("propeller")') 
-  db.execute('INSERT INTO users (name,state,pwddigest) VALUES ("AdminKing","admin",1)')
-  db.execute('INSERT INTO users (name,state,pwddigest) VALUES ("Airplanebuyer67","user",123)')
-  db.execute('INSERT INTO user_plane_rel (uid,aid) VALUES (2,1)')
-  db.execute('INSERT INTO user_plane_rel (uid,aid) VALUES (2,2)')
 end
 
 
