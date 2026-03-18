@@ -12,19 +12,20 @@ def db()
 end
 
 get('/') do
+  if session[:user_state] != "admin" && session[:user_state] != "user" 
+    session[:user_state] = "guest"
+  end
   slim(:"planeshop/welcomepage")
 end
 
 get('/index') do
-  if session[:user_state] == ""
-    session[:user_state] = "guest"
-  end
-
   @id = session[:user_id]
   @state = session[:user_state]
 
   if session[:user_state] == "user"
     slim(:"planeshop/indexuser")
+  elsif session[:user_state] == "admin"
+    slim(:"planeshop/indexadmin")
   else
     slim(:"planeshop/index")
   end
@@ -36,7 +37,7 @@ get("/index/planes/:typeid/:state") do
   typeid = params[:typeid]
   state = params[:state]
 
-  @planes = db.execute("SELECT * FROM airplanes INNER JOIN enginetypes ON airplanes.enginetypeid = enginetypes.id WHERE typeid = ?",typeid)
+  @planes = db.execute("SELECT * FROM airplanes INNER JOIN enginetypes ON airplanes.enginetypeid = enginetypes.eid WHERE typeid = ?",typeid)
 
   if state == "admin"
     slim(:"planeshop/planesadmin")
@@ -51,11 +52,14 @@ get("/planes/new") do
   if session[:user_state] == "admin"
     slim(:"planeshop/new")
   else
-    redirect(:"planeshop/error")
+    slim(:"planeshop/error")
   end
 end
 
 post("/planes") do
+  if session[:user_state] != "admin"
+    slim(:"planeshop/error")
+  end
   db = db()
   db.results_as_hash = true
   name = params[:n]
@@ -70,6 +74,9 @@ post("/planes") do
 end
 
 get('/planes/:id/edit') do
+  if session[:user_state] != "admin"
+    slim(:"planeshop/error")
+  end
   db = db()
   db.results_as_hash = true
   id = params[:id].to_i
@@ -79,8 +86,10 @@ get('/planes/:id/edit') do
 end
 
 post('/planes/:id/update') do
+  if session[:user_state] != "admin"
+    slim(:"planeshop/error")
+  end
   db = db()
-
   id = params[:id].to_i
   name = params[:n]
   description = params[:d]
@@ -95,22 +104,26 @@ post('/planes/:id/update') do
 end
 
 post('/planes/:id/delete') do
+  if session[:user_state] != "admin"
+    slim(:"planeshop/error")
+  end
   db = db()
   denna_ska_bort = params[:id].to_i
   db.execute("DELETE FROM airplanes WHERE id = ?",denna_ska_bort)
   redirect('/index')
 end
 
-post('/myplanes/:id') do
+get('/myplanes/:id') do
   db = db()
   db.results_as_hash = true
   id = session[:user_id]
   idcheck = params[:id].to_i
   if idcheck == id
-    @airplanes = db.execute("SELECT * FROM user_plane_rel INNER JOIN airplanes ON user_plane_rel.aid = airplanes.id WHERE uid = ?",[id])
+    @airplanes = db.execute("SELECT DISTINCT name,description,status,price,topspeed,typeid,enginetypeid FROM user_plane_rel INNER JOIN airplanes ON user_plane_rel.id = airplanes.id WHERE uid = ?",[id])
+    puts "#{@airplanes}"
     slim(:"myplanes")
   else
-    redirect(:"planeshop/error")
+    slim(:"planeshop/error")
   end
 end
 
@@ -134,7 +147,7 @@ post('/adduser') do
           db.execute("INSERT INTO users(name,state,pwddigest) VALUES(?,?,?)", [name,state,pwd_digest])
           redirect('/login')
       else
-          redirect(:"planeshop/error") #Lösenord är inte samma som confirmpassword
+          slim(:"planeshop/error") #Lösenord är inte samma som confirmpassword
       end
   else
       redirect('/login')
@@ -159,7 +172,7 @@ post('/login') do
   result=db.execute("SELECT id,pwddigest,state FROM users WHERE name=?", name)
 
   if result.empty?
-      redirect(:"planeshop/error")
+    slim(:"planeshop/error")
   end
 
   id = result.first["id"]
@@ -175,19 +188,22 @@ post('/login') do
       if session[:user_state] == "user"
         slim(:"planeshop/indexuser")
       else
-        slim(:"planeshop/index")
+        slim(:"planeshop/indexadmin")
       end
   else
-      redirect(:"planeshop/error") #Fel lösenord/username
+    slim(:"planeshop/error") #Fel lösenord/username
   end
 
 end
 
 post('/addplanestouser/:planeid') do
+  if session[:user_state] != "admin"
+    slim(:"planeshop/error")
+  end
   db = db()
   uid = session[:user_id]
   aid = params[:planeid]
-  db.execute("INSERT INTO user_plane_rel(uid,aid) VALUES (?,?)", [uid,aid])
+  db.execute("INSERT INTO user_plane_rel(uid,id) VALUES (?,?)", [uid,aid])
   redirect('/index')
 end
 

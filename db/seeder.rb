@@ -38,7 +38,7 @@ def create_tables(db)
               name TEXT NOT NULL)')
 
   db.execute('CREATE TABLE enginetypes (
-              id INTEGER PRIMARY KEY AUTOINCREMENT,
+              eid INTEGER PRIMARY KEY AUTOINCREMENT,
               enginename TEXT NOT NULL)')
   
   db.execute('CREATE TABLE users(
@@ -48,14 +48,12 @@ def create_tables(db)
               pwddigest TEXT)')
 
   db.execute('CREATE TABLE user_plane_rel(
-              id INTEGER PRIMARY KEY AUTOINCREMENT,
+              rid INTEGER PRIMARY KEY AUTOINCREMENT,
               uid INTEGER,
-              aid INTEGER)')
+              id INTEGER)')
 end
 
 def populate_tables(db)
-  db.execute('INSERT INTO airplanes (name, description, status, price, topspeed, typeid, enginetypeid) VALUES ("Draken", "Swedish military plane by Saab very cool","in stock",5,2000,1,1)')
-  db.execute('INSERT INTO airplanes (name, description, status, price, topspeed, typeid, enginetypeid) VALUES ("Cessna 172", "Most popular small plane","in stock",0.2,500,4,2)')
   db.execute('INSERT INTO types (name) VALUES ("militaryplane")') 
   db.execute('INSERT INTO types (name) VALUES ("airliner")')  
   db.execute('INSERT INTO types (name) VALUES ("private jet")')
