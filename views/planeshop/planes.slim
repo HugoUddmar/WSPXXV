@@ -6,12 +6,13 @@ form action="/index" method="get"
 hr
 
 - @planes.each do |plane|
-    p Name: #{plane["name"]}
-    p Description: #{plane["description"]}
-    p Price: #{plane["price"]}
-    p Top speed: #{plane["topspeed"]}
+    p Namn: #{plane["name"]}
+    p Beskrivning: #{plane["description"]}
+    p Pris: #{plane["price"]}
+    p Max hastighet: #{plane["topspeed"]}
     p Status: #{plane["status"]}
-    p Engine type: #{plane["enginename"]}
-    form action="/addplanestouser/#{plane["id"]}" method="post"
-        input type="submit" value="buy"
+    p Motortyp: #{plane["enginename"]}
+    - if plane["status"] != "Såld"
+        form action="/addplanestouser/#{plane["id"]}" method="post"
+            input type="submit" value="köp"
     hr

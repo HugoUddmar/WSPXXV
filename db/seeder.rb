@@ -34,8 +34,8 @@ def create_tables(db)
               enginetypeid INTEGER)')
 
   db.execute('CREATE TABLE types (
-              id INTEGER PRIMARY KEY AUTOINCREMENT,
-              name TEXT NOT NULL)')
+              tid INTEGER PRIMARY KEY AUTOINCREMENT,
+              typename TEXT NOT NULL)')
 
   db.execute('CREATE TABLE enginetypes (
               eid INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -45,7 +45,8 @@ def create_tables(db)
               id INTEGER PRIMARY KEY AUTOINCREMENT,
               name TEXT NOT NULL,
               state TEXT,
-              pwddigest TEXT)')
+              pwddigest TEXT,
+              timeattempts TEXT)')
 
   db.execute('CREATE TABLE user_plane_rel(
               rid INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -54,12 +55,14 @@ def create_tables(db)
 end
 
 def populate_tables(db)
-  db.execute('INSERT INTO types (name) VALUES ("militaryplane")') 
-  db.execute('INSERT INTO types (name) VALUES ("airliner")')  
-  db.execute('INSERT INTO types (name) VALUES ("private jet")')
-  db.execute('INSERT INTO types (name) VALUES ("small plane")') 
+  db.execute('INSERT INTO types (typename) VALUES ("militaryplane")') 
+  db.execute('INSERT INTO types (typename) VALUES ("airliner")')  
+  db.execute('INSERT INTO types (typename) VALUES ("private jet")')
+  db.execute('INSERT INTO types (typename) VALUES ("small plane")') 
   db.execute('INSERT INTO enginetypes (enginename) VALUES ("jetafterburner")') 
   db.execute('INSERT INTO enginetypes (enginename) VALUES ("propeller")') 
+
+  db.execute('INSERT INTO users (name,state,pwddigest,timeattempts) VALUES ("Admin","admin","$2a$12$uhiyI6nKW6A2Zdc4eXJJgucMwBOf7A8EHouSB/V1kfXiWyGMg1WUG","")')
 end
 
 
