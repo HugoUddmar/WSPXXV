@@ -1,6 +1,6 @@
 h2 Update
 
-form action="/planes/#{@selected_plane["id"]}/update" method="post"
+form action="/planes/#{@selected_plane["aid"]}/update" method="post"
     input name="n" placeholder="#{@selected_plane["name"]}" type="text"
     input name="d" placeholder="#{@selected_plane["description"]}" type="text"
     input name="p" placeholder="#{@selected_plane["price"]}" type="text"

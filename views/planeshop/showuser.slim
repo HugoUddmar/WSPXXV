@@ -1,8 +1,8 @@
 hr
 
-form action="/index" method="get"
+form action="/planes" method="get"
     input type="submit" value="Go back"
-
+    
 hr
 
 - @planes.each do |plane|
@@ -12,4 +12,7 @@ hr
     p Max hastighet: #{plane["topspeed"]}
     p Status: #{plane["status"]}
     p Motortyp: #{plane["enginename"]}
+    - if plane["status"] != "Såld"
+        form action="/addplanetouser/#{plane["aid"]}" method="post"
+            input type="submit" value="köp"
     hr

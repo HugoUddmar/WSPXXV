@@ -1,6 +1,6 @@
 hr
 
-form action="/index" method="get"
+form action="/planes" method="get"
     input type="submit" value="Go back"
 
 hr
@@ -13,10 +13,10 @@ hr
     p Status: #{plane["status"]}
     p Motortyp: #{plane["enginename"]}
 
-    form action="/planes/#{plane["id"]}/edit" method="get"
+    form action="/planes/#{plane["aid"]}/edit" method="get"
         input type="submit" value="edit"
 
-    form action="/planes/#{plane["id"]}/delete" method="post"
+    form action="/planes/#{plane["aid"]}/delete" method="post"
         input type="submit" value="delete"
     
     hr
