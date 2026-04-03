@@ -7,10 +7,10 @@ require_relative './model.rb'
 
 include Model
 
-#Returns the amount of commas ',' in a string
+# Counts the commas ',' in a string
 # 
-# input [String] string, the string which the function will count the commas on
-#
+# @param string [String] The string to be counted
+# @return [Integer] the amount of commas in string
 def countcommas(string)
   i = 0
   count = 0
@@ -23,10 +23,10 @@ def countcommas(string)
   return count
 end
 
-# Returns the 4 earliest times of the input string and the time now in a string and the difference between the time now and the earliest time
+# Removes the earliest time and adds the time now in a string
 # 
-# input [String] timeattempts, the string to be iterated
-#
+# @param timeattempts [String] the string to be iterated
+# @return [Array] timeattempts and the difference between the earliest and latest time
 def iteratetimeattempts(timeattempts)
   if timeattempts == nil
     timeattempts = Time.now.to_i.to_s + ","
@@ -70,7 +70,7 @@ def iteratetimeattempts(timeattempts)
   return [timeattempts,first - last]
 end
 
-# Checks if the state of the user is a admin, otherwise it throwns an error
+# Checks if the state of the user is a admin, if it isn't it throwns an error
 #
 def admincheck()
   if session[:user_state] != "admin"

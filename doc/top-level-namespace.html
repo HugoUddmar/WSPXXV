@@ -118,7 +118,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Checks if the state of the user is a admin, otherwise it throwns an error.</p>
+<p>Checks if the state of the user is a admin, if it isn’t it throwns an error.</p>
 </div></span>
   
 </li>
@@ -127,7 +127,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="top-level-namespace.html#countcommas-instance_method" title="#countcommas (instance method)">#<strong>countcommas</strong>(string)  &#x21d2; Object </a>
+      <a href="top-level-namespace.html#countcommas-instance_method" title="#countcommas (instance method)">#<strong>countcommas</strong>(string)  &#x21d2; Integer </a>
     
 
     
@@ -142,7 +142,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Returns the amount of commas ‘,’ in a string.</p>
+<p>Counts the commas ‘,’ in a string.</p>
 </div></span>
   
 </li>
@@ -367,7 +367,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="top-level-namespace.html#iteratetimeattempts-instance_method" title="#iteratetimeattempts (instance method)">#<strong>iteratetimeattempts</strong>(timeattempts)  &#x21d2; Object </a>
+      <a href="top-level-namespace.html#iteratetimeattempts-instance_method" title="#iteratetimeattempts (instance method)">#<strong>iteratetimeattempts</strong>(timeattempts)  &#x21d2; Array </a>
     
 
     
@@ -382,7 +382,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Returns the 4 earliest times of the input string and the time now in a string and the difference between the time now and the earliest time.</p>
+<p>Removes the earliest time and adds the time now in a string.</p>
 </div></span>
   
 </li>
@@ -578,7 +578,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Checks if the state of the user is a admin, otherwise it throwns an error</p>
+<p>Checks if the state of the user is a admin, if it isn’t it throwns an error</p>
 
 
   </div>
@@ -618,7 +618,7 @@
       <div class="method_details ">
   <h3 class="signature " id="countcommas-instance_method">
   
-    #<strong>countcommas</strong>(string)  &#x21d2; <tt>Object</tt> 
+    #<strong>countcommas</strong>(string)  &#x21d2; <tt>Integer</tt> 
   
 
   
@@ -627,15 +627,51 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns the amount of commas ‘,’ in a string</p>
-
-<p>input [String] string, the string which the function will count the commas on</p>
+<p>Counts the commas ‘,’ in a string</p>
 
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>string</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The string to be counted</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the amount of commas in string</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 
 
@@ -1189,7 +1225,7 @@
       <div class="method_details ">
   <h3 class="signature " id="iteratetimeattempts-instance_method">
   
-    #<strong>iteratetimeattempts</strong>(timeattempts)  &#x21d2; <tt>Object</tt> 
+    #<strong>iteratetimeattempts</strong>(timeattempts)  &#x21d2; <tt>Array</tt> 
   
 
   
@@ -1198,15 +1234,51 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns the 4 earliest times of the input string and the time now in a string and the difference between the time now and the earliest time</p>
-
-<p>input [String] timeattempts, the string to be iterated</p>
+<p>Removes the earliest time and adds the time now in a string</p>
 
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>timeattempts</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the string to be iterated</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>timeattempts and the difference between the earliest and latest time</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 
 
@@ -2281,7 +2353,7 @@
 </div>
 
       <div id="footer">
-  Generated on Fri Apr  3 20:22:43 2026 by
+  Generated on Fri Apr  3 21:34:23 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.38 (ruby-3.3.5).
 </div>
