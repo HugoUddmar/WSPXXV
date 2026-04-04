@@ -385,10 +385,18 @@ end
 # @param [Integer] :aid, The ID of the Airplane
 #
 # @see Model#addplanetouser
+# @see Model#selected_plane
 post('/addplanetouser/:planeid') do
   uid = session[:user_id]
   aid = params[:planeid].to_i
+
+  if selected_plane(aid)["status"] != "I lager"
+    session[:error] = "Planet är redan köpt"
+    redirect("/error")
+  end
+
   addplanetouser(uid,aid)
+
   redirect('/planes')
 end
 
